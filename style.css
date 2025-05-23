@@ -1,6 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+
+
 body {
-    background-color: #c9d6ff;
-    background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+    background-color: #bcc8f1;
+    background: linear-gradient(to right, #c7b5b5, #b7c1e4);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -20,17 +24,57 @@ body {
     min-height: 480px;
 }
 
-input, button {
-    display: block;
-    width: 80%;
-    padding: 10px;
-    margin: 15px auto;
-    border: none;
-    border-radius: 6px;
-    font-size: 16px;
+.btn_neon { 
+    background-color: #2e2c34;
+    color: #fffdfd;
+    font-size: 12px;
+    padding: 10px 45px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    cursor: pointer;
+    text-decoration: none;
 }
 
-input {
-    background-color: #2b2b2b;
-    color: #fff;
+
+.container span{
+    font-size: 18px;
 }
+
+.container button{
+    background-color: #512da8;
+    color: #fff;
+    font-size: 12px;
+    padding: 10px 45px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.container form{
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    height: 100%;
+}
+
+.container input{
+    background-color: #eee;
+    border: none;
+    margin: 8px 0;
+    padding: 10px 15px;
+    font-size: 13px;
+    border-radius: 8px;
+    width: 100%;
+    outline: none;
+}
+
