@@ -1,19 +1,23 @@
 body {
-    background-color: #0f0f0f;
-    color: #ffffff;
-    font-family: 'Segoe UI', sans-serif;
-    margin: 0;
-    padding: 0;
+    background-color: #c9d6ff;
+    background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
 }
 
+
 .container {
-    max-width: 600px;
-    margin: 100px auto;
-    padding: 30px;
-    background-color: #1c1c1c;
-    border-radius: 12px;
-    box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
-    text-align: center;
+    background-color: #fff;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+    position: relative;
+    overflow: hidden;
+    width: 768px;
+    max-width: 100%;
+    min-height: 480px;
 }
 
 input, button {
