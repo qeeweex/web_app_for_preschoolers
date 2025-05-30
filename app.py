@@ -10,7 +10,7 @@ def index():
 def register():
     if request.method == 'POST':
         return redirect(url_for('home'))
-    return render_template('registration.html')
+    return render_template('register.html')
 
 @app.route('/home')
 def home():
