@@ -16,5 +16,9 @@ def register():
 def home():
     return render_template('home_page.html')
 
+@app.route('/examples')
+def example():
+    return render_template('examples.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
