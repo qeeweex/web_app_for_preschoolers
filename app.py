@@ -24,5 +24,9 @@ def example():
 def letter():
     return render_template('letters.html')
 
+@app.route('/numbers')
+def number():
+    return render_template('numbers.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
