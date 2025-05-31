@@ -20,5 +20,9 @@ def home():
 def example():
     return render_template('examples.html')
 
+@app.route('/letters')
+def letter():
+    return render_template('letters.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
