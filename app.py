@@ -28,5 +28,9 @@ def letter():
 def number():
     return render_template('numbers.html')
 
+@app.route('/figures')
+def figure():
+    return render_template('figures.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
