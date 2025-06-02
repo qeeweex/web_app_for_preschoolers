@@ -6,12 +6,25 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <div class="container">
-        <h2>Реши пример:</h2>
-        <p>2 + 2 = ?</p>
-        <button onclick="alert('Правильно!')" class="btn">4</button>
-        <button onclick="alert('Неправильно!')" class="btn">0</button>
-        <button onclick="alert('Неравильно!')" class="btn">-4</button>
+  <h1>Квиз: Учись решить примеры<h1>
+  <div class="question-container">
+    <div id="question1" class="question" style="display: block;">
+      <p>Сколько будет 3 + 3?</p>
+      <label><input type="radio" name="question1" value="5">5</label><br>
+      <label><input type="radio" name="question1" value="6">6</label><br>
+      <label><input type="radio" name="question1" value="7">7</label><br>
+  
+      <button onclick="checkAnswer(1)">Ответить</button>
     </div>
+    <div id='result' style='display:none;'>
+      <h2>Результаты:</h2>
+      <p id='correctCount'></p>
+      <p id='wrongCount'></p>
+      <button onclick='restartQuiz()'>Начать заново</button>
+    </div>
+  </div>
+
+<script src="script.js"></script>
+    
 </body>
 </html>
