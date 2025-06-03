@@ -8,6 +8,7 @@
 <body>
   <h1>Квиз: Учись решить примеры<h1>
   <div class="question-container">
+    
     <div id="question1" class="question" style="display: block;">
       <p>Сколько будет 3 + 3?</p>
       <label><input type="radio" name="question1" value="5">5</label><br>
@@ -16,15 +17,71 @@
   
       <button onclick="checkAnswer(1)">Ответить</button>
     </div>
+    
     <div id='result' style='display:none;'>
       <h2>Результаты:</h2>
       <p id='correctCount'></p>
       <p id='wrongCount'></p>
       <button onclick='restartQuiz()'>Начать заново</button>
     </div>
+  
   </div>
 
-<script src="script.js"></script>
+  <script>
+  // Весь ваш JavaScript-код сюда
+  const correctAnswersMap = {
+    1: "6",
+  };
+
+  let correctAnswers = 0;
+  let wrongAnswers = 0;
+
+  function checkAnswer(questionNumber) {
+    const answerInput = document.querySelector(`input[name='question${questionNumber}']:checked`);
+    if (!answerInput) {
+        alert("Пожалуйста, выберите ответ!");
+        return;
+    }
+    const answer = answerInput.value;
+
+    if (answer === correctAnswersMap[questionNumber]) {
+        alert("Правильно!");
+        correctAnswers++;
+    } else {
+        alert("Неправильно!");
+        wrongAnswers++;
+    }
+
+    document.getElementById(`question${questionNumber}`).style.display = "none";
+
+    const totalQuestions = Object.keys(correctAnswersMap).length;
+    if (questionNumber < totalQuestions) {
+        document.getElementById(`question${questionNumber +1}`).style.display = "block";
+    } else {
+        showResults();
+    }
+  }
+
+  function showResults() {
+    document.querySelector('.question-container').style.display='none';
+    document.getElementById('result').style.display='block';
+    document.getElementById('correctCount').textContent=`Правильных ответов: ${correctAnswers}`;
+    document.getElementById('wrongCount').textContent=`Неправильных ответов: ${wrongAnswers}`;
+  }
+
+  function restartQuiz() {
+    correctAnswers=0;
+    wrongAnswers=0;
+
+    for (let i=1; i<=Object.keys(correctAnswersMap).length; i++) {
+        document.getElementById(`question${i}`).style.display='block';
+        const options=document.querySelectorAll(`input[name='question${i}']`);
+        options.forEach(opt=>opt.checked=false);
+    }
+
+    document.getElementById('result').style.display='none';
+  }
+  </script>
     
 </body>
 </html>
