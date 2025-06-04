@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
 </head>
 <body>
-  <h1>Квиз: Учись решить примеры<h1>
+  <h1>Квиз: Учись решить примеры</h1>
   <div class="question-container">
     
     <div id="question1" class="question">
@@ -18,25 +18,26 @@
       <button onclick="checkAnswer(1)">Ответить</button>
     </div>
 
-    <div id="question2" class="question">
-      <p>Сколько будет 12 - 10 </p>
-      <label><input type="radio" name="question1" value="5">8</label><br>
-      <label><input type="radio" name="question1" value="6">2</label><br>
-      <label><input type="radio" name="question1" value="7">0</label><br>
+    <div id="question2" class="question" style="display:none;">
+      <p>Сколько будет 12 - 10?</p>
+      <label><input type="radio" name="question2" value="8">8</label><br>
+      <label><input type="radio" name="question2" value="2">2</label><br>
+      <label><input type="radio" name="question2" value="0">0</label><br>
   
-      <button onclick="checkAnswer(1)">Ответить</button>
+      <button onclick="checkAnswer(2)">Ответить</button>
     </div>
     
     <div id='result' style='display:none;'>
       <h2>Результаты:</h2>
       <p id='correctCount'></p>
       <p id='wrongCount'></p>
+      <p id='mistakes'></p>
       <button onclick='restartQuiz()'>Начать заново</button>
+      <button onclick='goToOtherGames()'>Другие игры</button>
     </div>
   
   </div>
-
+  
   <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-    
 </body>
 </html>
