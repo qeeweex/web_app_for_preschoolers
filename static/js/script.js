@@ -1,7 +1,7 @@
 let answers = {
-  1: '6', // правильный ответ на первый вопрос
-  2: '2', // правильный ответ на второй вопрос
-  3: '10' // исправленный правильный ответ на третий вопрос
+  1: '6', 
+  2: '2', 
+  3: '10' 
 };
 
 let userAnswers = {};
@@ -26,14 +26,14 @@ function checkAnswer(questionNumber) {
 
   userAnswers[questionNumber] = selectedValue;
 
-  // Проверка правильности ответа
+  // Проверка  ответа
   if (selectedValue === answers[questionNumber]) {
     correctCount++;
   } else {
     wrongCount++;
   }
 
-  // Переход к следующему вопросу или отображение результатов
+  // Переход к следующему вопросу и результатов
   document.getElementById(`question${questionNumber}`).style.display = 'none';
 
   if (questionNumber < 3) {
@@ -54,10 +54,10 @@ function showResults() {
 }
 
 function restartQuiz() {
-  // Перезагрузка страницы или сброс переменных
+  // Перезагрузка страницы 
   location.reload();
 }
 
 function goToOtherGames() {
-  // Реализуйте переход к другим играм
+  // Надо реализовать переход к другим играм , не сделано
 }
