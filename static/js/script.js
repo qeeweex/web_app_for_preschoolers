@@ -1,11 +1,13 @@
 let answers = {
   1: '6', // правильный ответ на первый вопрос
-  2: '2'  // правильный ответ на второй вопрос
+  2: '2', // правильный ответ на второй вопрос
+  3: '10' // исправленный правильный ответ на третий вопрос
 };
 
 let userAnswers = {};
 let correctCount = 0;
 let wrongCount = 0;
+let currentQuestion = 1;
 
 function checkAnswer(questionNumber) {
   const options = document.querySelectorAll(`#question${questionNumber} input[type="radio"]`);
@@ -32,50 +34,30 @@ function checkAnswer(questionNumber) {
   }
 
   // Переход к следующему вопросу или отображение результатов
-  if (questionNumber === 1) {
-    document.getElementById('question1').style.display = 'none';
-    document.getElementById('question2').style.display = 'block';
-  } else if (questionNumber === 2) {
+  document.getElementById(`question${questionNumber}`).style.display = 'none';
+
+  if (questionNumber < 3) {
+    currentQuestion++;
+    document.getElementById(`question${currentQuestion}`).style.display = 'block';
+  } else {
     showResults();
   }
 }
 
 function showResults() {
-  document.querySelector('.question-container').style.display = 'none';
-  const resultDiv = document.getElementById('result');
-  resultDiv.style.display = 'block';
+  document.querySelector('.question-container').style.display = 'block';
+  document.getElementById('result').style.display = 'block';
 
-  document.getElementById('correctCount').textContent = 'Правильных ответов: ' + correctCount;
-  document.getElementById('wrongCount').textContent = 'Неправильных ответов: ' + wrongCount;
-
-  // Отобразить ошибки
-  let mistakes = '';
-  for (const q in answers) {
-    if (userAnswers[q] !== answers[q]) {
-      mistakes += `В вопросе ${q} был выбран неправильный ответ.<br>`;
-    }
-  }
-  document.getElementById('mistakes').innerHTML = mistakes || 'Ошибок нет.';
+  document.getElementById('correctCount').textContent = `Правильных ответов: ${correctCount}`;
+  document.getElementById('wrongCount').textContent = `Неправильных ответов: ${wrongCount}`;
+  // Можно добавить отображение ошибок или других данных
 }
 
 function restartQuiz() {
-  // Обнуляем переменные
-  userAnswers = {};
-  correctCount = 0;
-  wrongCount = 0;
-
-  // Возвращаемся к первому вопросу
-  document.getElementById('question1').style.display = 'block';
-  document.getElementById('question2').style.display = 'none';
-
-  // Скрываем результаты
-  document.getElementById('result').style.display = 'none';
-
-  // Снимаем выборы
-  const radios = document.querySelectorAll('input[type="radio"]');
-  radios.forEach(r => r.checked = false);
+  // Перезагрузка страницы или сброс переменных
+  location.reload();
 }
 
 function goToOtherGames() {
-  alert('Переход к другим играм...');
+  // Реализуйте переход к другим играм
 }
