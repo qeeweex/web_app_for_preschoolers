@@ -1,19 +1,26 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <title>Буквы</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta charset="UTF-8" />
+    <title>Узнай букву</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
 </head>
 <body>
-    <div class="container">
-        <h2>Какая буква идет первая в алфавите?:</h2>
-        <button onclick="alert('Правильно!')" class="btn">А</button>
-        <button onclick="alert('Неправильно!')" class="btn">Б</button>
-        <button onclick="alert('Неравильно!')" class="btn">Д</button>
-        <button onclick="alert('Неравильно!')" class="btn">У</button>
-        <button onclick="alert('Неравильно!')" class="btn">О</button>
-        </div>
-    </div>
+
+<div id="letter">А</div>
+
+<div id="image-container" style="text-align: center; margin: 20px 0;">
+  <img src="arbuz.jpg" alt="Картинка" width="200" />
+</div>
+
+<div id="buttons">
+  <button onclick="checkAnswer('Арбуз')">Арбуз</button>
+  <button onclick="checkAnswer('Мяч')">Мяч</button>
+  <button onclick="checkAnswer('Зонт')">Зонт</button>
+</div>
+
+<div id="result"></div>
+
+<script src="static/js/letters_script.js"></script>
 </body>
 </html>
