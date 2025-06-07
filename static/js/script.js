@@ -1,7 +1,8 @@
 let answers = {
   1: '6', 
   2: '2', 
-  3: '10' 
+  3: '10',
+  4: '-5' 
 };
 
 let userAnswers = {};
@@ -36,7 +37,7 @@ function checkAnswer(questionNumber) {
   // Переход к следующему вопросу и результатов
   document.getElementById(`question${questionNumber}`).style.display = 'none';
 
-  if (questionNumber < 3) {
+  if (questionNumber < 4) {
     currentQuestion++;
     document.getElementById(`question${currentQuestion}`).style.display = 'block';
   } else {
@@ -45,19 +46,36 @@ function checkAnswer(questionNumber) {
 }
 
 function showResults() {
-  document.querySelector('.question-container').style.display = 'block';
-  document.getElementById('result').style.display = 'block';
+  // Убедитесь, что контейнеры для вопросов и результатов существуют и видимы
+  const questionContainer = document.querySelector('.question-container');
+  const resultContainer = document.getElementById('result');
 
-  document.getElementById('correctCount').textContent = `Правильных ответов: ${correctCount}`;
-  document.getElementById('wrongCount').textContent = `Неправильных ответов: ${wrongCount}`;
-  // Можно добавить отображение ошибок или других данных
+  // Делаем их видимыми
+  if (questionContainer) {
+    questionContainer.style.display = 'block';
+  }
+
+  if (resultContainer) {
+    resultContainer.style.display = 'block';
+  }
+
+  // Обновляем текстовые элементы с результатами
+  const correctCountElement = document.getElementById('correctCount');
+  const wrongCountElement = document.getElementById('wrongCount');
+
+  if (correctCountElement) {
+    correctCountElement.textContent = `Правильных ответов: ${correctCount}`;
+  }
+
+  if (wrongCountElement) {
+    wrongCountElement.textContent = `Неправильных ответов: ${wrongCount}`;
+  }
 }
 
 function restartQuiz() {
-  // Перезагрузка страницы 
   location.reload();
 }
 
 function goToOtherGames() {
-  // Надо реализовать переход к другим играм , не сделано
+  window.location.href = '/home';
 }
