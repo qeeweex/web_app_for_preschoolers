@@ -78,4 +78,5 @@ function restartQuiz() {
 
 function goToOtherGames() {
   window.location.href = '/home';
+
 }
