@@ -21,37 +21,54 @@ body {
 }
 
 .hello { 
-    width: 1000px;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    margin-bottom: 10px;
+    height: 80px;
     background-color: whitesmoke;
-    padding: 10px;
+    border-radius: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 80%;
+    min-width: 320px;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 .begin { 
     height: 20px;
-    width: 100px;
-    padding: 5px;
-    text-decoration: none;
+    width: 110px;
     background-color: #bcc8f1;
     background: linear-gradient(to right, #c7b5b5, #b7c1e4);
-    border-radius: 10px;
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-right: 90px;
-    color: #000;
+    padding: 5px;
     text-decoration: none;
-    border: 1px solid #000;
-    margin-left: auto;
-    padding: center;
-    margin-top: 10px;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+    font-size: 20px;
+    border-radius: 5px;
+    margin-right: 8px;
+    text-align: center;
+    color: black;
 }
 
+.login {
+    height: 20px;
+    width: 110px;
+    background-color: #bcc8f1;
+    background: linear-gradient(to right, #c7b5b5, #b7c1e4);
+    padding: 5px;
+    text-decoration: none;
+    font-size: 20px;
+    border-radius: 5px;
+    margin-right: 8px;
+    text-align: center;
+    color: black;
+     
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+    font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+
+}
 
 .greetings {
     display: flex;
