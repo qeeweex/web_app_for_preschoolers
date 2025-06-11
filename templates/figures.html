@@ -3,15 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <title>Фигуры</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/figures.css') }}">
 </head>
 <body>
-    <div class="container">
-        <h2>У какой фигуры четыре угла?:</h2>
-        <button onclick="alert('Правильно!')" class="btn">Квадрат</button>
-        <button onclick="alert('Неправильно!')" class="btn">Треугольник</button>
-        <button onclick="alert('Неравильно!')" class="btn">Круг</button>
-        <button onclick="alert('Неравильно!')" class="btn">Пятиугольник</button>
+<h1>Квиз: Угадай фигуру</h1>
+<div class="question-container">
+    <div id="question1" class="question">
+      
+      <img class="triangle" src="{{ url_for('uploaded_photo', filename='triangle.jpg') }}">
+
+      <p>Что это за фигура и сколько она имеет углов? </p>
+      <label><input type="radio" name="question1" value="Треугольник, 4 угла">Треугольник, 4 угла</label><br>
+      <label><input type="radio" name="question2" value="Квадрат , 6 углов">Квадрат , 6 углов</label><br>
+      <label><input type="radio" name="question3" value="Треугольник, 3 угла">Треугольник, 3 угла</label><br>
+  
+      <button onclick="checkAnswer(1)">Ответить</button>
     </div>
+    
+    <div id="question2" class="question" style="display: none">
+      
+      <img class="circle" src="{{ url_for('uploaded_photo', filename='circle.jpg') }}">
+
+      <p>Что похоже на круг?</p>
+      <label><input type="radio" name="question1" value="солнце">солнце</label><br>
+      <label><input type="radio" name="question2" value="дерево">дерево</label><br>
+  
+      <button onclick="checkAnswer(2)">Ответить</button>
+    </div>
+    
+    <div id="question3" class="question" style="display: none">
+      
+      <img class="trapeze" src="{{ url_for('uploaded_photo', filename='trapeze.jpg') }}">
+
+      <p>Сколько углов у трапеции?</p>
+      <label><input type="radio" name="question1" value="4">4</label><br>
+      <label><input type="radio" name="question2" value="2">2</label><br>
+  
+      <button onclick="checkAnswer(3)">Ответить</button>
+    </div>
+    
+    <div id="question4" class="question" style="display: none">
+      
+      <img class="square" src="{{ url_for('uploaded_photo', filename='square.jpg') }}">
+
+      <p>Сколько сторон у квадрата ?</p>
+      <label><input type="radio" name="question1" value="4">4</label><br>
+      <label><input type="radio" name="question2" value="2">2</label><br>
+      <label><input type="radio" name="question3" value="6">6</label><br>
+  
+      <button onclick="checkAnswer(4)">Ответить</button>
+    </div>
+    
+    <div id='result' style='display:none;'>
+      <h2>Результаты:</h2>
+      <p id='correctCount'></p>
+      <p id='wrongCount'></p>
+      <p id='mistakes'></p>
+      <button onclick='restartQuiz()'>Начать заново</button>
+      <button onclick='goToOtherGames()'>Другие игры</button>
+    </div>
+</div>
+  
+  
+  <script src="{{ url_for('static', filename='js/figures_script.js') }}"></script>
 </body>
 </html>
