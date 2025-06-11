@@ -3,15 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <title>Цифры</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/numbers.css') }}">
 </head>
 <body>
-    <div class="container">
-        <h1>Правельно ли идут цифры по возврастанию?
-            1,2,3,4,6,7,8,9
-        </h1>
-        <button onclick="alert('Неправильно, посмотри внимательнее!')" class="btn">Да</button>
-        <button onclick="alert('Правильно, молодец!')" class="btn">Нет</button>
+    <h1>Квиз: Выучи цифры</h1>
+    <div class="question-container">
+        <div id="question1" class="question">
+            
+            <img class="numbers" src="{{ url_for('uploaded_photo', filename='numbers.jpg') }}">
+
+            <p>Внимательно посмотри на изоброжение, с какой цифры начинается отсчет ?</p>
+            <label><input type="radio" name="question1" value="0">0</label><br>
+            <label><input type="radio" name="question1" value="1">1</label><br>
+            <label><input type="radio" name="question1" value="2">2</label><br>
+
+            <button onclick="checkAnswer(1)">Ответить</button>
+        </div>
+        
+        <div id="question2" class="question" style="display: none">
+            
+            <img class="sings" src="{{ url_for('uploaded_photo', filename='sings.jpg') }}">
+
+            <p>Внимательно посмотри на изоброжение, сколько насчитал математических знаков?</p>
+            <label><input type="radio" name="question2" value="3">3</label><br>
+            <label><input type="radio" name="question2" value="2">2</label><br>
+            <label><input type="radio" name="question2" value="6">6</label><br>
+
+            <button onclick="checkAnswer(2)">Ответить</button>
+        </div>
+        
+        <div id="question3" class="question" style="display: none">
+            
+            <img class="more" src="{{ url_for('uploaded_photo', filename='more.jpg') }}">
+
+            <p>Какой знак есть на этой фотографии?</p>
+            <label><input type="radio" name="question3" value="Больше">Больше</label><br>
+            <label><input type="radio" name="question3" value="Умножить">Умножить</label><br>
+            <label><input type="radio" name="question3" value="Плюс">Плюс</label><br>
+
+            <button onclick="checkAnswer(3)">Ответить</button>
+        </div>
+        
+        <div id='result' style='display:none;'>
+            <h2>Результаты:</h2>
+            <p id='correctCount'></p>
+            <p id='wrongCount'></p>
+            <p id='mistakes'></p>
+            <button onclick='restartQuiz()'>Начать заново</button>
+            <button onclick='goToOtherGames()'>Другие игры</button>
+        </div>
     </div>
+    <script src="{{ url_for('static', filename='js/numbers_script.js') }}"></script>
 </body>
 </html>
