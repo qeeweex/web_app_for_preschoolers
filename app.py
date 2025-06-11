@@ -37,6 +37,10 @@ def number():
 def figure():
     return render_template('figures.html')
 
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
 @app.route('/uploads/<filename>')
 def uploaded_photo(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
