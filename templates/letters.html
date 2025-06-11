@@ -6,10 +6,13 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style/letters.css') }}">
 </head>
 <body>
-  <h1>Квиз: Узнай букву</h1>
+  <h1>Квиз: Узнай предмет</h1>
   <div class="question-container">
     
     <div id="question1" class="question">
+      
+      <img class="arbuz" src="{{ url_for('uploaded_photo', filename='arbuz.jpg') }}">
+
       <p>Что это за фрукт?</p>
       <label><input type="radio" name="question1" value="Арбуз">Арбуз</label><br>
       <label><input type="radio" name="question1" value="Помидор">Помидор</label><br>
@@ -19,6 +22,9 @@
     </div>
 
     <div id="question2" class="question" style="display: none">
+      
+      <img class="road" src="{{ url_for('uploaded_photo', filename='road.jpg') }}">
+      
       <p>На какую бувку начинается этот предмет? </p>
       <label><input type="radio" name="question2" value="З">З</label><br>
       <label><input type="radio" name="question2" value="Д">Д</label><br>
@@ -27,6 +33,9 @@
     </div>
 
     <div id="question3" class="question" style="display: none">
+      
+      <img class="carrot" src="{{ url_for('uploaded_photo', filename='carrot.jpg') }}">
+      
       <p>Что это за овощ ? </p>
       <label><input type="radio" name="question3" value="Морковка">Морковка</label><br>
       <label><input type="radio" name="question3" value="Репа">Репа</label><br>
@@ -36,6 +45,9 @@
     </div>
     
     <div id="question4" class="question" style="display: none">
+      
+      <img class="helicopter" src="{{ url_for('uploaded_photo', filename='helicopter.jpg') }}">
+      
       <p>Что это за транспорт ?</p>
       <label><input type="radio" name="question4" value="Самолет">Самолет</label><br>
       <label><input type="radio" name="question4" value="Вертолет">Вертолет</label><br>
@@ -52,7 +64,6 @@
       <button onclick='restartQuiz()'>Начать заново</button>
       <button onclick='goToOtherGames()'>Другие игры</button>
     </div>
-  
   </div>
   
   <script src="{{ url_for('static', filename='js/letters_script.js') }}"></script>
