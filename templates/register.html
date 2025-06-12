@@ -1,39 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Регистрация</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/register.css')}}">
+    <title>Modern Login Page | AsmrProg</title>
 </head>
 
 <body>
-    <h1>Зарегистрироваться</h1>
-    <div class="main">
 
-        <form action="" method="POST" class="create_article_form">
-            <div class="form_group">
-                <label for="user_name">Имя пользователя</label>
-                <input type="text" id="user_name" name="user_name" required>
-            </div>
+    <div class="container" id="container">
+        <div class="form-container sign-up">
+            <form method="POST" action="{{ url_for('signup') }}">
+                <h1>Create Account</h1>
+                <div class="social-icons">
+                    <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+                <span>or use your email for registeration</span>
+                <input type="text" placeholder="Name">
+                <input type="email" placeholder="Email">
+                <input type="password" placeholder="Password">
+                <button type="submit">Sign Up</button>
             
-            <div class="form_group">
-                <label for="user_name">Электронная почта</label>
-                <input type="text" id="email" name="email" required>
+            </form>
+        </div>
+        <div class="form-container sign-in">
+            <form>
+                <h1>Sign In</h1>
+                <div class="social-icons">
+                    <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
+                    <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
+                </div>
+                <span>or use your email password</span>
+                <input type="email" placeholder="Email">
+                <input type="password" placeholder="Password">
+                <a href="#">Forget Your Password?</a>
+                <button>Sign In</button>
+            </form>
+        </div>
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>Welcome Back!</h1>
+                    <p>Enter your personal details to use all of site features</p>
+                    <button class="hidden" id="login">Sign In</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1>Hello, Friend!</h1>
+                    <p>Register with your personal details to use all of site features</p>
+                    <button class="hidden" id="register">Sign Up</button>
+                </div>
             </div>
-
-            <div class="form_group">
-                <label for="user_name">Пароль</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-
-            <div class="form_group">
-                <label for="user_name">Повторите пароль</label>
-                <input type="password" id="password_repeat" name="password_repeat" required>
-            </div>
-            
-            <button type="submit">Зарегистрироваться</button>
-            <a href="/home"></a>
+        </div>
     </div>
+
+    <script src="{{ url_for('static', filename='js/register.js')}}"></script>
 </body>
+
 </html>

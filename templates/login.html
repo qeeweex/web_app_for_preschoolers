@@ -12,10 +12,6 @@
     <div class="main">
         <h1>Войти</h1>
 
-        {% for message in get_flashed_messages() %}
-        <div class="error_message">{{ message }}</div>
-        {% endfor %}
-
         <form action="" method="POST" class="create_article_form">
             <div class="form_group">
                 <label for="user_name">Логин</label>
@@ -28,6 +24,7 @@
             </div>
 
             <button type="submit">Войти</button>
+            <a href="/home"></a>
         </form>
     </div>
 </body>

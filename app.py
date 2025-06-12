@@ -1,6 +1,18 @@
 
-from flask import Flask, render_template, redirect, request, url_for, send_from_directory
+from flask import (
+    Flask,
+    render_template,
+    request,
+    redirect,
+    url_for,
+    send_from_directory,
+    abort,
+    flash,
+    session)
+
 import os 
+from database import Database
+
 
 app = Flask(__name__)
 
@@ -11,8 +23,8 @@ os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 def index():
     return render_template('index.html')
 
-@app.route('/register', methods=['GET', 'POST'])
-def register():
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
     if request.method == 'POST':
         return redirect(url_for('home'))
     return render_template('register.html')

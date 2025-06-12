@@ -43,3 +43,13 @@ class Database:
         cursor.execute(sql_code, params)
 
         return cursor.fetchall()
+
+    @staticmethod
+    def find_user_id_by_name_or_email(username_on_email):
+        users = Database.fetchall("SELECT id FROM users WHERE user_name = ? OR email = ? ", [username_on_email, username_on_email])
+
+        if not users:
+            return None
+        
+        id = users[0][0]
+        return id

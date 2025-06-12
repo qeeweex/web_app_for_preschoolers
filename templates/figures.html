@@ -14,8 +14,8 @@
 
       <p>Что это за фигура и сколько она имеет углов? </p>
       <label><input type="radio" name="question1" value="Треугольник, 4 угла">Треугольник, 4 угла</label><br>
-      <label><input type="radio" name="question2" value="Квадрат , 6 углов">Квадрат , 6 углов</label><br>
-      <label><input type="radio" name="question3" value="Треугольник, 3 угла">Треугольник, 3 угла</label><br>
+      <label><input type="radio" name="question1" value="Квадрат , 6 углов">Квадрат , 6 углов</label><br>
+      <label><input type="radio" name="question1" value="Треугольник, 3 угла">Треугольник, 3 угла</label><br>
   
       <button onclick="checkAnswer(1)">Ответить</button>
     </div>
@@ -25,7 +25,7 @@
       <img class="circle" src="{{ url_for('uploaded_photo', filename='circle.jpg') }}">
 
       <p>Что похоже на круг?</p>
-      <label><input type="radio" name="question1" value="солнце">солнце</label><br>
+      <label><input type="radio" name="question2" value="солнце">солнце</label><br>
       <label><input type="radio" name="question2" value="дерево">дерево</label><br>
   
       <button onclick="checkAnswer(2)">Ответить</button>
@@ -36,8 +36,8 @@
       <img class="trapeze" src="{{ url_for('uploaded_photo', filename='trapeze.jpg') }}">
 
       <p>Сколько углов у трапеции?</p>
-      <label><input type="radio" name="question1" value="4">4</label><br>
-      <label><input type="radio" name="question2" value="2">2</label><br>
+      <label><input type="radio" name="question3" value="4">4</label><br>
+      <label><input type="radio" name="question3" value="2">2</label><br>
   
       <button onclick="checkAnswer(3)">Ответить</button>
     </div>
@@ -47,9 +47,9 @@
       <img class="square" src="{{ url_for('uploaded_photo', filename='square.jpg') }}">
 
       <p>Сколько сторон у квадрата ?</p>
-      <label><input type="radio" name="question1" value="4">4</label><br>
-      <label><input type="radio" name="question2" value="2">2</label><br>
-      <label><input type="radio" name="question3" value="6">6</label><br>
+      <label><input type="radio" name="question4" value="4">4</label><br>
+      <label><input type="radio" name="question4" value="2">2</label><br>
+      <label><input type="radio" name="question4" value="6">6</label><br>
   
       <button onclick="checkAnswer(4)">Ответить</button>
     </div>

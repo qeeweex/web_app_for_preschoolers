@@ -18,9 +18,8 @@ body {
     width: 500px;
     max-width: 100%;
     min-height: 480px;
-}
 
-.hello { 
+}.hello { 
     height: 80px;
     background-color: whitesmoke;
     border-radius: 10px;
@@ -30,7 +29,7 @@ body {
     min-width: 320px;
     margin-bottom: 5px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
 }
 
@@ -43,7 +42,8 @@ body {
     text-decoration: none;
     font-size: 20px;
     border-radius: 5px;
-    margin-right: 8px;
+    margin-right: 5px;
+    margin-left: 20px;
     text-align: center;
     color: black;
 }
@@ -139,3 +139,4 @@ h1 {
         margin-bottom: 8px;
     }
 }
+
