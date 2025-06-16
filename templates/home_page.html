@@ -4,16 +4,34 @@
     <meta charset="UTF-8">
     <title>Главная</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style/index_style.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
+    <div class="top-bar">
+        <div class="user-info">
+            Аккаунт: {{ username }}
+        </div>
+        <a class="logout-btn" href="{{ url_for('logout') }}">Выйти</a>
+    </div>
+    <!-- Только блок выбора игр -->
     <h1>Выберите раздел:</h1>
-    <div class="container">
-        <ul class="menu">
-            <li><a class="letters" href="/letters">Угадай предмет</a></li>
-            <li><a class="numbers" href="/numbers">Цифры</a></li>
-            <li><a class="figures" href="/figures">Фигуры</a></li>
-            <li><a class="examples" href="/examples">Примеры</a></li>
-        </ul>
+    <div class="games-grid">
+        <a class="game-card letters" href="/letters">
+            <i class="fa-solid fa-lightbulb"></i>
+            <span>Угадай предмет</span>
+        </a>
+        <a class="game-card numbers" href="/numbers">
+            <i class="fa-solid fa-1"></i>
+            <span>Цифры</span>
+        </a>
+        <a class="game-card figures" href="/figures">
+            <i class="fa-solid fa-shapes"></i>
+            <span>Фигуры</span>
+        </a>
+        <a class="game-card examples" href="/examples">
+            <i class="fa-solid fa-equals"></i>
+            <span>Примеры</span>
+        </a>
     </div>
 </body>
 </html>
