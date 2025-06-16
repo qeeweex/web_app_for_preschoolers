@@ -1,11 +1,11 @@
 body {
-    background: linear-gradient(120deg, #c7b5b5 0%, #b7c1e4 100%);
     min-height: 100vh;
+    background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
     margin: 0;
+    font-family: 'Montserrat', Arial, sans-serif;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-family: 'Montserrat', Arial, sans-serif;
     flex-direction: column;
 }
 
@@ -31,7 +31,8 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 48px;
+    justify-content: center; /* добавлено для вертикального центрирования */
+    margin-bottom: 0;
     margin-top: 0;
 }
 
