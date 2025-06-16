@@ -44,13 +44,14 @@
             <button onclick="checkAnswer(3)">Ответить</button>
         </div>
         
-        <div id='result' style='display:none;'>
-            <h2>Результаты:</h2>
-            <p id='correctCount'></p>
-            <p id='wrongCount'></p>
-            <p id='mistakes'></p>
-            <button onclick='restartQuiz()'>Начать заново</button>
-            <button onclick='goToOtherGames()'>Другие игры</button>
+        <div id="result" style="display: none;">
+            <h2>Результат</h2>
+            <div class="success">Молодец! Все ответы верны!</div>
+            <!-- или -->
+            <div class="fail">Есть ошибки, попробуй ещё раз!</div>
+            <p>Правильных ответов: 3 из 4</p>
+            <button onclick="restartQuiz()">Пройти ещё раз</button>
+            <button onclick="goToOtherGames()">Другие игры</button>
         </div>
     </div>
     <script src="{{ url_for('static', filename='js/numbers_script.js') }}"></script>
