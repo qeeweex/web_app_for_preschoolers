@@ -1,8 +1,13 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for, session, send_from_directory
 import database
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
+
+
+@app.route('/uploads/<filename>')
+def uploaded_photo(filename):
+    return send_from_directory('uploads', filename)
 
 @app.before_request
 def before_request():
@@ -63,6 +68,30 @@ def home_page():
 @app.route('/')
 def index():
     return redirect(url_for('login'))
+
+@app.route('/letters')
+def letters():
+    if 'username' not in session:
+        return redirect(url_for('home_page'))
+    return render_template('letters.html', username=session['username'])
+
+@app.route('/numbers')
+def numbers():
+    if 'username' not in session:
+        return redirect(url_for('home_page'))
+    return render_template('numbers.html', username=session['username'])
+
+@app.route('/figures')
+def figures():
+    if 'username' not in session:
+        return redirect(url_for('home_page'))
+    return render_template('figures.html', username=session['username'])
+
+@app.route('/examples')
+def examples():
+    if 'username' not in session:
+        return redirect(url_for('home_page'))
+    return render_template('examples.html', username=session['username'])
 
 if __name__ == '__main__':
     database.init_db(app)
