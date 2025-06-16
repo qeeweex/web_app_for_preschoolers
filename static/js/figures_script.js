@@ -9,6 +9,7 @@ let userAnswers = {};
 let correctCount = 0;
 let wrongCount = 0;
 let currentQuestion = 1;
+const totalQuestions = Object.keys(answers).length;
 
 function checkAnswer(questionNumber) {
   const options = document.querySelectorAll(`#question${questionNumber} input[type="radio"]`);
@@ -27,49 +28,56 @@ function checkAnswer(questionNumber) {
 
   userAnswers[questionNumber] = selectedValue;
 
-  // Проверка  ответа
+  // Проверка ответа
   if (selectedValue === answers[questionNumber]) {
     correctCount++;
   } else {
     wrongCount++;
   }
 
-  // Переход к следующему вопросу и результатов
+  // Скрываем текущий вопрос
   document.getElementById(`question${questionNumber}`).style.display = 'none';
 
-  if (questionNumber < 4) {
+  // Если есть следующий вопрос, показываем его, иначе показываем результат
+  if (questionNumber < totalQuestions) {
     currentQuestion++;
-    document.getElementById(`question${currentQuestion}`).style.display = 'block';
+    const nextQuestion = document.getElementById(`question${currentQuestion}`);
+    if (nextQuestion) nextQuestion.style.display = 'block';
   } else {
     showResults();
   }
 }
 
 function showResults() {
-  // Убедитесь, что контейнеры для вопросов и результатов существуют и видимы
+  // Скрываем контейнер с вопросами
   const questionContainer = document.querySelector('.question-container');
-  const resultContainer = document.getElementById('result');
-
-  // Делаем их видимыми
   if (questionContainer) {
-    questionContainer.style.display = 'block';
+    questionContainer.style.display = 'flex';
+    // Скрываем все вопросы внутри контейнера
+    const questions = questionContainer.querySelectorAll('.question');
+    questions.forEach(q => q.style.display = 'none');
   }
 
-  if (resultContainer) {
-    resultContainer.style.display = 'block';
+  // Показываем блок с результатом
+  let resultContainer = document.getElementById('result');
+  if (!resultContainer) {
+    // Если блока нет, создаём его
+    resultContainer = document.createElement('div');
+    resultContainer.id = 'result';
+    questionContainer.appendChild(resultContainer);
   }
-
-  // Обновляем текстовые элементы с результатами
-  const correctCountElement = document.getElementById('correctCount');
-  const wrongCountElement = document.getElementById('wrongCount');
-
-  if (correctCountElement) {
-    correctCountElement.textContent = `Правильных ответов: ${correctCount}`;
-  }
-
-  if (wrongCountElement) {
-    wrongCountElement.textContent = `Неправильных ответов: ${wrongCount}`;
-  }
+  resultContainer.style.display = 'flex';
+  resultContainer.innerHTML = `
+    <h2>Результат</h2>
+    <div class="${wrongCount === 0 ? 'success' : 'fail'}">
+      ${wrongCount === 0 
+        ? 'Молодец! Все ответы верны!' 
+        : 'Есть ошибки, попробуй ещё раз!'}
+    </div>
+    <p>Правильных ответов: ${correctCount} из ${totalQuestions}</p>
+    <button onclick="restartQuiz()">Пройти ещё раз</button>
+    <button onclick="goToOtherGames()">Другие игры</button>
+  `;
 }
 
 function restartQuiz() {
