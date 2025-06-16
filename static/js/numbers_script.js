@@ -76,5 +76,5 @@ function restartQuiz() {
 }
 
 function goToOtherGames() {
-  window.location.href = '/home';
+  window.location.href = '/home_page';
 }
