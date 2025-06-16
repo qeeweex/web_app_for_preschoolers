@@ -1,55 +1,119 @@
 import sqlite3
-import hashlib
-from users import User
+from flask import Flask, render_template, request, redirect, url_for, session, g
 
+app = Flask(__name__)
+app.secret_key = 'your_secret_key'  # Замените на свой секретный ключ
 
-class Database:
-    db_path = "database.db"
-    schema_path = "schema.sql"
+DATABASE = 'users.db'
 
-    @staticmethod
-    def execute(sql_code: str, params: tuple = ()):
-        conn = sqlite3.connect(Database.db_path)
-        cursor = conn.cursor()
-        if params:
-            cursor.execute(sql_code, params)  # Используем execute для параметров
+def get_db():
+    db = getattr(g, '_database', None)
+    if db is None:
+        db = g._database = sqlite3.connect(DATABASE)
+    return db
+
+@app.teardown_appcontext
+def close_connection(exception):
+    db = getattr(g, '_database', None)
+    if db is not None:
+        db.close()
+
+def init_db(app):
+    with app.app_context():
+        db = get_db()
+        cursor = db.cursor()
+        cursor.execute('''
+            CREATE TABLE IF NOT EXISTS users (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                username TEXT UNIQUE NOT NULL,
+                email TEXT UNIQUE NOT NULL,
+                password TEXT NOT NULL
+            )
+        ''')
+        db.commit()
+
+def add_user(username, email, password):
+    db = get_db()
+    cursor = db.cursor()
+    cursor.execute('INSERT INTO users (username, email, password) VALUES (?, ?, ?)', (username, email, password))
+    db.commit()
+
+def user_exists(username, email):
+    db = get_db()
+    cursor = db.cursor()
+    cursor.execute('SELECT id FROM users WHERE username = ? OR email = ?', (username, email))
+    return cursor.fetchone() is not None
+
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
+    error = None
+    if request.method == 'POST':
+        username = request.form['username']
+        email = request.form['email']
+        password = request.form['password']
+
+        db = get_db()
+        cursor = db.cursor()
+        # Проверка на существующего пользователя
+        cursor.execute('SELECT id FROM users WHERE username = ? OR email = ?', (username, email))
+        if cursor.fetchone():
+            error = 'Пользователь с таким именем или почтой уже существует.'
+            return render_template('register.html', error=error)
+
+        # Сохраняем пользователя
+        cursor.execute('INSERT INTO users (username, email, password) VALUES (?, ?, ?)', (username, email, password))
+        db.commit()
+        session['username'] = username
+        return redirect(url_for('home_page'))
+
+    return render_template('register.html', error=error)
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    error = None
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+
+        db = get_db()
+        cursor = db.cursor()
+        cursor.execute('SELECT id FROM users WHERE username = ? AND password = ?', (username, password))
+        user = cursor.fetchone()
+        if user:
+            session['username'] = username
+            return redirect(url_for('home_page'))
         else:
-            cursor.executescript(sql_code)    # executescript для DDL-запросов
-        conn.commit()
-        conn.close()
+            error = 'Неверное имя пользователя или пароль.'
+    return render_template('login.html', error=error)
 
+@app.route('/logout')
+def logout():
+    session.pop('username', None)
+    return redirect(url_for('login'))
 
-    @staticmethod
-    def register_user(user_name, email, password):
-        
-        users = Database.fetchall("SELECT * FROM users WHERE user_name = ? OR email = ?", [user_name, email])
-        
-        print(users)
+@app.route('/home_page')
+def home_page():
+    if 'username' not in session:
+        return redirect(url_for('login'))
+    return render_template('home_page.html', username=session['username'])
 
-        if users:
-            return False
-        
-        password_hash = hashlib.md5(password.encode()).hexdigest()
-        
-        Database.execute("INSERT INTO users (user_name, email, password_hash) "
-                          "VALUES(?, ?, ?)",
-                        [user_name, email, password_hash])
+@app.route('/')
+def index():
+    return redirect(url_for('login'))
 
-    @staticmethod
-    def fetchall(sql_code: str, params: tuple = ()):
-        conn = sqlite3.connect(Database.db_path)
-        
-        cursor = conn.cursor()
-        cursor.execute(sql_code, params)
+def check_user_by_email(email, password):
+    db = get_db()
+    cursor = db.cursor()
+    cursor.execute('SELECT id FROM users WHERE email = ? AND password = ?', (email, password))
+    return cursor.fetchone() is not None
 
-        return cursor.fetchall()
+def get_username_by_email(email):
+    db = get_db()
+    cursor = db.cursor()
+    cursor.execute('SELECT username FROM users WHERE email = ?', (email,))
+    row = cursor.fetchone()
+    return row[0] if row else None
 
-    @staticmethod
-    def find_user_id_by_name_or_email(username_on_email):
-        users = Database.fetchall("SELECT id FROM users WHERE user_name = ? OR email = ? ", [username_on_email, username_on_email])
-
-        if not users:
-            return None
-        
-        id = users[0][0]
-        return id
+if __name__ == '__main__':
+    init_db()
+    app.run(debug=True)
