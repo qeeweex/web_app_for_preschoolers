@@ -1,13 +1,18 @@
 from flask import Flask, render_template, request, redirect, url_for, session, send_from_directory
-import database
+import src.database as database
+import os
 
-app = Flask(__name__)
+app = Flask(
+    __name__,
+    template_folder=os.path.join('src', 'templates'),
+    static_folder=os.path.join('src', 'static')
+)
 app.secret_key = 'your_secret_key'
 
 
 @app.route('/uploads/<filename>')
 def uploaded_photo(filename):
-    return send_from_directory('uploads', filename)
+    return send_from_directory(os.path.join('src', 'uploads'), filename)
 
 @app.before_request
 def before_request():
