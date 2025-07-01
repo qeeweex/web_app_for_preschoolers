@@ -41,6 +41,7 @@ def signup():
 
     return render_template('register.html', error=error, login_error=None)
 
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     login_error = None
